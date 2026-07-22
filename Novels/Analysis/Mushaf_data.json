@@ -1,0 +1,21 @@
+{
+  "novel": "Mushaf",
+  "author": "Nimra Ahmed",
+  "genre": "Islamic / Spiritual / Romance",
+  "stats": {
+    "total_chars": 0,
+    "total_words": 0,
+    "urdu_words": 0,
+    "unique_urdu_words": 0,
+    "sentences": 1,
+    "paragraphs": 0,
+    "avg_sentence_length": 0.0,
+    "lexical_diversity": 0.0,
+    "dialogue_markers": 0,
+    "dialogue_density": 0.0,
+    "questions_asked": 0,
+    "exclamations": 0
+  },
+  "emotions_detected": [],
+  "emotion_counts": {}
+}

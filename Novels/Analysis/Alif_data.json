@@ -1,0 +1,21 @@
+{
+  "novel": "Alif",
+  "author": "Umera Ahmed",
+  "genre": "Spiritual / Artistic / Romance",
+  "stats": {
+    "total_chars": 456894,
+    "total_words": 9022,
+    "urdu_words": 0,
+    "unique_urdu_words": 0,
+    "sentences": 646,
+    "paragraphs": 379,
+    "avg_sentence_length": 14.0,
+    "lexical_diversity": 0.0,
+    "dialogue_markers": 30,
+    "dialogue_density": 0.046,
+    "questions_asked": 3,
+    "exclamations": 2
+  },
+  "emotions_detected": [],
+  "emotion_counts": {}
+}

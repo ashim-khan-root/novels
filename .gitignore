@@ -1,0 +1,20 @@
+# Hugo output
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Agent infrastructure
+.agent/
+.firecrawl/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Environment
+.env
+.venv/

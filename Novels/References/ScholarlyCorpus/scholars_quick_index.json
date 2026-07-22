@@ -1,0 +1,36 @@
+{
+  "project": "novel-ai",
+  "version": "1.0",
+  "scholars": [
+    {
+      "id": "iqbal",
+      "name": "Allama Muhammad Iqbal",
+      "name_urdu": "علامہ محمد اقبال",
+      "core_concepts": ["Khudi", "Ishq_vs_Aql", "Shaheen", "Bekhudi", "Faqr", "Ijtihad"],
+      "major_works": ["Asrar-e-Khudi", "Rumuz-e-Bekhudi", "Bal-e-Jibril", "Zarb-e-Kaleem", "Javid Nama", "Reconstruction of Religious Thought"],
+      "novel_role": "Philosophical Visionary / Awakening Mentor",
+      "corpus_path": "Novels/References/ScholarlyCorpus/corpus_Allama_Iqbal.md",
+      "profile_path": "Novels/Analysis/profile_Allama_Iqbal.md"
+    },
+    {
+      "id": "bhashani",
+      "name": "Maulana Abdul Hamid Khan Bhashani",
+      "name_urdu": "مولانا عبد الحمید خان بھاشانی",
+      "core_concepts": ["Hukumat-e-Rabbaniya", "Rububiyyah", "Islamic_Socialism", "Mozlum_Rights", "Faqeer_Leadership"],
+      "major_works": ["Dars-e-Maashrat", "Bayan-ul-Matloob", "Bunyadi Haqeeqatein", "Aaina-e-Taslees"],
+      "novel_role": "Revolutionary Ascetic / Grassroots Crusader",
+      "corpus_path": "Novels/References/ScholarlyCorpus/corpus_Maulana_Bhashani.md",
+      "profile_path": "Novels/Analysis/profile_Maulana_Bhashani.md"
+    },
+    {
+      "id": "fultali",
+      "name": "Allama Abdul Latif Chowdhury Fultali",
+      "name_urdu": "علامہ عبد اللطیف چوہدری پھلتلی",
+      "core_concepts": ["Tazkiyah_e_Nafs", "Ishq_e_Rasool", "Tajweed_Precision", "Khidmat_e_Khalq", "Sufi_Adab"],
+      "major_works": ["Al-Tanwir Ala Al-Tafsir", "Al-Qaolus Sadid fi Al-Tajweed", "Muntakhab us-Siyar"],
+      "novel_role": "Serene Spiritual Guide / Master of Hearts",
+      "corpus_path": "Novels/References/ScholarlyCorpus/corpus_Abdul_Latif_Fultali.md",
+      "profile_path": "Novels/Analysis/profile_Abdul_Latif_Fultali.md"
+    }
+  ]
+}

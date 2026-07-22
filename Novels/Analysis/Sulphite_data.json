@@ -1,0 +1,39 @@
+{
+  "novel": "Sulphite",
+  "author": "Noor Rajpoot",
+  "genre": "Romantic / Spiritual / Suspense",
+  "stats": {
+    "total_chars": 1025178,
+    "total_words": 232935,
+    "urdu_words": 230702,
+    "unique_urdu_words": 12326,
+    "sentences": 2575,
+    "paragraphs": 441,
+    "avg_sentence_length": 90.5,
+    "lexical_diversity": 0.053,
+    "dialogue_markers": 4310,
+    "dialogue_density": 1.674,
+    "questions_asked": 515,
+    "exclamations": 1394
+  },
+  "emotions_detected": [
+    "patience",
+    "doubt",
+    "pain",
+    "sorrow",
+    "loyalty",
+    "love",
+    "union",
+    "certainty"
+  ],
+  "emotion_counts": {
+    "patience": 115,
+    "doubt": 98,
+    "pain": 74,
+    "sorrow": 27,
+    "loyalty": 7,
+    "love": 4,
+    "union": 3,
+    "certainty": 2
+  }
+}

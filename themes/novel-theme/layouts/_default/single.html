@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article class="chapter">
+  <nav class="chapter-nav-top">
+    <a href="{{ .Parent.RelPermalink }}" class="back-link">← ابواب کی فہرست</a>
+  </nav>
+  <h1 class="chapter-title">{{ .Title }}</h1>
+  <div class="chapter-content">
+    {{ .Content }}
+  </div>
+  <nav class="chapter-nav-bottom">
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="prev-chapter">→ پچھلا باب</a>
+    {{ end }}
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="next-chapter">← اگلا باب</a>
+    {{ end }}
+  </nav>
+</article>
+{{ end }}

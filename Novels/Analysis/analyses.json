@@ -1,0 +1,202 @@
+[
+  {
+    "novel": "Sulphite",
+    "author": "Noor Rajpoot",
+    "genre": "Romantic / Spiritual / Suspense",
+    "stats": {
+      "total_chars": 1025178,
+      "total_words": 232935,
+      "urdu_words": 230702,
+      "unique_urdu_words": 12326,
+      "sentences": 2575,
+      "paragraphs": 441,
+      "avg_sentence_length": 90.5,
+      "lexical_diversity": 0.053,
+      "dialogue_markers": 4310,
+      "dialogue_density": 1.674,
+      "questions_asked": 515,
+      "exclamations": 1394
+    },
+    "emotions_detected": [
+      "patience",
+      "doubt",
+      "pain",
+      "sorrow",
+      "loyalty",
+      "love",
+      "union",
+      "certainty"
+    ],
+    "emotion_counts": {
+      "patience": 115,
+      "doubt": 98,
+      "pain": 74,
+      "sorrow": 27,
+      "loyalty": 7,
+      "love": 4,
+      "union": 3,
+      "certainty": 2
+    }
+  },
+  {
+    "novel": "Peer-e-Kamil",
+    "author": "Umera Ahmed",
+    "genre": "Spiritual / Islamic / Romance",
+    "stats": {
+      "total_chars": 716553,
+      "total_words": 138984,
+      "urdu_words": 0,
+      "unique_urdu_words": 0,
+      "sentences": 2372,
+      "paragraphs": 1179,
+      "avg_sentence_length": 58.6,
+      "lexical_diversity": 0.0,
+      "dialogue_markers": 2186,
+      "dialogue_density": 0.922,
+      "questions_asked": 645,
+      "exclamations": 2916
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  },
+  {
+    "novel": "Jannat-Kay-Pattay",
+    "author": "Nimra Ahmed",
+    "genre": "Romantic / Spiritual / Self-discovery",
+    "stats": {
+      "total_chars": 1680162,
+      "total_words": 386747,
+      "urdu_words": 378391,
+      "unique_urdu_words": 18357,
+      "sentences": 13183,
+      "paragraphs": 1473,
+      "avg_sentence_length": 29.3,
+      "lexical_diversity": 0.049,
+      "dialogue_markers": 1775,
+      "dialogue_density": 0.135,
+      "questions_asked": 3220,
+      "exclamations": 4040
+    },
+    "emotions_detected": [
+      "doubt",
+      "patience",
+      "pain",
+      "sorrow",
+      "loyalty",
+      "union"
+    ],
+    "emotion_counts": {
+      "doubt": 131,
+      "patience": 120,
+      "pain": 98,
+      "sorrow": 41,
+      "loyalty": 25,
+      "union": 2
+    }
+  },
+  {
+    "novel": "Haalim",
+    "author": "Nimra Ahmed",
+    "genre": "Fantasy / Time-travel / Romantic",
+    "stats": {
+      "total_chars": 58919,
+      "total_words": 7856,
+      "urdu_words": 0,
+      "unique_urdu_words": 0,
+      "sentences": 3929,
+      "paragraphs": 1963,
+      "avg_sentence_length": 2.0,
+      "lexical_diversity": 0.0,
+      "dialogue_markers": 0,
+      "dialogue_density": 0.0,
+      "questions_asked": 0,
+      "exclamations": 0
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  },
+  {
+    "novel": "Mushaf",
+    "author": "Nimra Ahmed",
+    "genre": "Islamic / Spiritual / Romance",
+    "stats": {
+      "total_chars": 0,
+      "total_words": 0,
+      "urdu_words": 0,
+      "unique_urdu_words": 0,
+      "sentences": 1,
+      "paragraphs": 0,
+      "avg_sentence_length": 0.0,
+      "lexical_diversity": 0.0,
+      "dialogue_markers": 0,
+      "dialogue_density": 0.0,
+      "questions_asked": 0,
+      "exclamations": 0
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  },
+  {
+    "novel": "Alif",
+    "author": "Umera Ahmed",
+    "genre": "Spiritual / Artistic / Romance",
+    "stats": {
+      "total_chars": 456894,
+      "total_words": 9022,
+      "urdu_words": 0,
+      "unique_urdu_words": 0,
+      "sentences": 646,
+      "paragraphs": 379,
+      "avg_sentence_length": 14.0,
+      "lexical_diversity": 0.0,
+      "dialogue_markers": 30,
+      "dialogue_density": 0.046,
+      "questions_asked": 3,
+      "exclamations": 2
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  },
+  {
+    "novel": "Mala",
+    "author": "Nimra Ahmed",
+    "genre": "Socio-romantic / Suspense",
+    "stats": {
+      "total_chars": 0,
+      "total_words": 0,
+      "urdu_words": 0,
+      "unique_urdu_words": 0,
+      "sentences": 1,
+      "paragraphs": 0,
+      "avg_sentence_length": 0.0,
+      "lexical_diversity": 0.0,
+      "dialogue_markers": 0,
+      "dialogue_density": 0.0,
+      "questions_asked": 0,
+      "exclamations": 0
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  },
+  {
+    "novel": "Ishq-Aatish",
+    "author": "Sadia Rajpoot",
+    "genre": "Romantic / Social / Philosophical",
+    "stats": {
+      "total_chars": 15085,
+      "total_words": 2382,
+      "urdu_words": 2382,
+      "unique_urdu_words": 6,
+      "sentences": 1,
+      "paragraphs": 396,
+      "avg_sentence_length": 2382.0,
+      "lexical_diversity": 0.003,
+      "dialogue_markers": 0,
+      "dialogue_density": 0.0,
+      "questions_asked": 0,
+      "exclamations": 0
+    },
+    "emotions_detected": [],
+    "emotion_counts": {}
+  }
+]

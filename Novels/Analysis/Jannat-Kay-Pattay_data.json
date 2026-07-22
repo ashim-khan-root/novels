@@ -1,0 +1,35 @@
+{
+  "novel": "Jannat-Kay-Pattay",
+  "author": "Nimra Ahmed",
+  "genre": "Romantic / Spiritual / Self-discovery",
+  "stats": {
+    "total_chars": 1680162,
+    "total_words": 386747,
+    "urdu_words": 378391,
+    "unique_urdu_words": 18357,
+    "sentences": 13183,
+    "paragraphs": 1473,
+    "avg_sentence_length": 29.3,
+    "lexical_diversity": 0.049,
+    "dialogue_markers": 1775,
+    "dialogue_density": 0.135,
+    "questions_asked": 3220,
+    "exclamations": 4040
+  },
+  "emotions_detected": [
+    "doubt",
+    "patience",
+    "pain",
+    "sorrow",
+    "loyalty",
+    "union"
+  ],
+  "emotion_counts": {
+    "doubt": 131,
+    "patience": 120,
+    "pain": 98,
+    "sorrow": 41,
+    "loyalty": 25,
+    "union": 2
+  }
+}

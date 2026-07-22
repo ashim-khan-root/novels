@@ -1,0 +1,14 @@
+baseURL = "https://ashim-khan-root.github.io/novel-ai/"
+locale = "ur"
+title = "اشیم احمد — اردو ناولز"
+theme = "novel-theme"
+defaultContentLanguage = "ur"
+paginate = 50
+
+[params]
+  description = "اردو ناولز — رقم اور چراغِ توفیق"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

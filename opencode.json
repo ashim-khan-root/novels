@@ -1,0 +1,20 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "git push --force*": "deny",
+      "rm -rf /*": "deny",
+      "git push *": "ask"
+    }
+  },
+  "mcp": {
+    "novel-ai-mcp": {
+      "type": "local",
+      "command": ["python", "-u", "C:/Users/Lenovo/Desktop/novel/novel-ai/mcp_server.py"],
+      "enabled": true,
+      "timeout": 10000
+    }
+  }
+}

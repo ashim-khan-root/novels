@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="novel-page">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="novel-desc">{{ . }}</p>{{ end }}
+  <div class="chapter-list">
+    <h2>ابواب</h2>
+    <ol>
+      {{ range .Pages.ByWeight }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+{{ end }}

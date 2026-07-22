@@ -1,0 +1,21 @@
+{
+  "novel": "Peer-e-Kamil",
+  "author": "Umera Ahmed",
+  "genre": "Spiritual / Islamic / Romance",
+  "stats": {
+    "total_chars": 716553,
+    "total_words": 138984,
+    "urdu_words": 0,
+    "unique_urdu_words": 0,
+    "sentences": 2372,
+    "paragraphs": 1179,
+    "avg_sentence_length": 58.6,
+    "lexical_diversity": 0.0,
+    "dialogue_markers": 2186,
+    "dialogue_density": 0.922,
+    "questions_asked": 645,
+    "exclamations": 2916
+  },
+  "emotions_detected": [],
+  "emotion_counts": {}
+}
