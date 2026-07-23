@@ -11,18 +11,21 @@
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="{{ "/" | relURL }}" class="nav-logo">{{ .Site.Title }}</a>
-      <div class="nav-links">
-        <a href="{{ "/raqm/" | relURL }}" class="nav-link">Raqm</a>
-        <a href="{{ "/chirag-e-taufeeq/" | relURL }}" class="nav-link">Chirag</a>
-        <a href="{{ "/ghalat-bahan/" | relURL }}" class="nav-link">Ghalat-Bahan</a>
-        <a href="{{ "/khamosh-ehad/" | relURL }}" class="nav-link">Khamosh-Ehad</a>
-        <a href="{{ "/references/" | relURL }}" class="nav-link">Library</a>
+  <header class="header">
+    <div class="header-inner">
+      <a href="{{ "/" | relURL }}" class="header-logo">{{ .Site.Title }}</a>
+      <nav class="header-nav">
+        <a href="{{ "/raqm/" | relURL }}" class="header-nav-link">Raqm</a>
+        <a href="{{ "/chirag-e-taufeeq/" | relURL }}" class="header-nav-link">Chirag</a>
+        <a href="{{ "/ghalat-bahan/" | relURL }}" class="header-nav-link">Ghalat-Bahan</a>
+        <a href="{{ "/khamosh-ehad/" | relURL }}" class="header-nav-link">Khamosh-Ehad</a>
+        <a href="{{ "/references/" | relURL }}" class="header-nav-link">Library</a>
+      </nav>
+      <div class="header-search">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search novels..." autocomplete="off">
       </div>
     </div>
-  </nav>
+  </header>
   <main>
     {{ block "main" . }}{{ end }}
   </main>

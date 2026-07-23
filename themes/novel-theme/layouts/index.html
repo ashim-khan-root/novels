@@ -1,62 +1,59 @@
 {{ define "main" }}
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Urdu Novels</div>
-    <h1 class="hero-title">Where Stories<br>Come Alive</h1>
-    <p class="hero-subtitle">
-      Immersive Urdu fiction exploring love, faith, science, and the human spirit.
-      <br>Four complete novels, waiting for you.
-    </p>
-    <div class="hero-cta">
-      <a href="#novels" class="btn btn-primary">Start Reading</a>
-    </div>
+<section class="browse-section">
+  <div class="browse-header">
+    <h1 class="browse-title">Browse Novels</h1>
+    <p class="browse-subtitle">Original Urdu fiction by Ashim Ahmad</p>
   </div>
-  <div class="hero-scroll">
-    <span>Scroll to explore</span>
-    <div class="scroll-arrow">&darr;</div>
-  </div>
-</section>
-
-<section class="novels-section" id="novels">
-  <div class="section-header">
-    <h2>Discover Novels</h2>
-    <p class="section-desc">Original Urdu novels by Ashim Ahmad.</p>
-  </div>
-  <div class="novels-grid">
+  <div class="browse-grid" id="novelGrid">
     {{ range where .Site.Pages "Kind" "section" }}
-      {{ if and (ne .Title "References") (ne .Title "Posts") (ne .Title "Tags") (ne .Title "Categories") (gt (len .Pages) 0) }}
-      <article class="novel-card" onclick="window.location='{{ .RelPermalink }}'">
-        <div class="card-layout">
-            <div class="card-cover-side">
-            {{ $covers := dict "Raqm" "raqm.svg" "Chirag-e-Taufeeq" "chirag-e-taufeeq.svg" "Ghalat-Bahan" "ghalat-bahan.png" "Khamosh-Ehad" "khamosh-ehad.png" }}
-            {{ $coverFile := index $covers .Title }}
-            {{ $coverPath := "" }}
-            {{ with $coverFile }}{{ $coverPath = printf "/images/covers/%s" . }}{{ end }}
-            {{ with $coverPath }}<img src="{{ . | relURL }}" alt="{{ $.Title }}" class="card-cover">{{ end }}
+      {{ if and (ne .Title "References") (ne .Title "Reference Library") (ne .Title "Posts") (ne .Title "Tags") (ne .Title "Categories") (gt (len .Pages) 0) }}
+      {{ $covers := dict "Raqm" "raqm.svg" "Chirag-e-Taufeeq" "chirag-e-taufeeq.svg" "Ghalat-Bahan" "ghalat-bahan.png" "Khamosh-Ehad" "khamosh-ehad.png" }}
+      {{ $coverFile := index $covers .Title }}
+      {{ $coverPath := "" }}
+      {{ $novelTitle := .Title }}
+      {{ with $coverFile }}{{ $coverPath = printf "images/covers/%s" . }}{{ end }}
+      <article class="browse-card" data-title="{{ $novelTitle }}">
+        <a href="{{ .RelPermalink }}" class="browse-card-link">
+          <div class="browse-card-cover">
+            {{ with $coverPath }}<img src="{{ . | relURL }}" alt="{{ $novelTitle }}" loading="lazy">{{ end }}
           </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="card-status completed">Completed</span>
-              <span class="card-chapters">{{ len .Pages }} Chapters</span>
+          <div class="browse-card-body">
+            <h2 class="browse-card-title">{{ .Title }}</h2>
+            <span class="browse-card-author">Ashim Ahmad</span>
+            {{ with .Params.description }}<p class="browse-card-desc">{{ . | truncate 120 }}</p>{{ end }}
+            <div class="browse-card-footer">
+              <span class="browse-card-chapters">{{ len .Pages }} chapters</span>
+              <span class="browse-card-rating">&starf; &starf; &starf; &starf; &starf;</span>
             </div>
-            <h3 class="card-title">{{ .Title }}</h3>
-            {{ with .Params.description }}<p class="card-desc">{{ . }}</p>{{ end }}
-            <span class="card-link">Read {{ .Title }} &rarr;</span>
           </div>
-        </div>
+        </a>
       </article>
       {{ end }}
     {{ end }}
   </div>
-</section>
-
-<section class="about-section">
-  <div class="about-content">
-    <h2>About the Author</h2>
-    <p>
-      Ashim Ahmad writes Urdu fiction that bridges tradition and modernity&mdash;stories rooted in Islamic spirituality yet engaged with contemporary science, law, and social justice. Each novel is crafted with attention to emotional depth, philosophical inquiry, and the beauty of the Urdu language.
-    </p>
+  <div class="browse-empty" id="browseEmpty" style="display:none">
+    <p>No novels match your search.</p>
   </div>
 </section>
+
+<script>
+(function() {
+  const input = document.getElementById('searchInput');
+  const grid = document.getElementById('novelGrid');
+  const empty = document.getElementById('browseEmpty');
+  if (!input || !grid) return;
+  const cards = grid.querySelectorAll('.browse-card');
+  input.addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    let visible = 0;
+    cards.forEach(function(card) {
+      const title = card.getAttribute('data-title') || '';
+      const match = !q || title.toLowerCase().includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    empty.style.display = visible === 0 ? '' : 'none';
+  });
+})();
+</script>
 {{ end }}
