@@ -1,19 +1,62 @@
 {{ define "main" }}
 <section class="hero">
-  <h1>اردو ناولز</h1>
-  <p class="subtitle">مصنف: اشیم احمد</p>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Urdu Novels</div>
+    <h1 class="hero-title">Where Stories<br>Come Alive</h1>
+    <p class="hero-subtitle">
+      Immersive Urdu fiction exploring love, faith, science, and the human spirit.
+      <br>Four complete novels, waiting for you.
+    </p>
+    <div class="hero-cta">
+      <a href="#novels" class="btn btn-primary">Start Reading</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll to explore</span>
+    <div class="scroll-arrow">&darr;</div>
+  </div>
 </section>
 
-<div class="novel-grid">
-  <div class="novel-card">
-    <h2><a href="/raqm/">رقم</a></h2>
-    <p class="novel-desc">ایک ایسی محبت کی کہانی جو غلطی سے شروع ہوئی، سچ سے گزری، اور اللہ کے بھروسے پر ختم ہوئی۔</p>
-    <span class="novel-meta">19 ابواب &middot; مکمل</span>
+<section class="novels-section" id="novels">
+  <div class="section-header">
+    <h2>Discover Novels</h2>
+    <p class="section-desc">Original Urdu novels by Ashim Ahmad.</p>
   </div>
-  <div class="novel-card">
-    <h2><a href="/chirag-e-taufeeq/">چراغِ توفیق</a></h2>
-    <p class="novel-desc">ایک ایسی محبت کی کہانی جو سچ سے شروع ہوئی، صبر سے گزری، اور اللہ کے بھروسے پر ختم ہوئی۔</p>
-    <span class="novel-meta">15 ابواب &middot; مکمل</span>
+  <div class="novels-grid">
+    {{ range where .Site.Pages "Kind" "section" }}
+      {{ if and (ne .Title "References") (ne .Title "Posts") (ne .Title "Tags") (ne .Title "Categories") (gt (len .Pages) 0) }}
+      <article class="novel-card" onclick="window.location='{{ .RelPermalink }}'">
+        <div class="card-layout">
+            <div class="card-cover-side">
+            {{ $covers := dict "Raqm" "raqm.svg" "Chirag-e-Taufeeq" "chirag-e-taufeeq.svg" "Ghalat-Bahan" "ghalat-bahan.png" "Khamosh-Ehad" "khamosh-ehad.png" }}
+            {{ $coverFile := index $covers .Title }}
+            {{ $coverPath := "" }}
+            {{ with $coverFile }}{{ $coverPath = printf "/images/covers/%s" . }}{{ end }}
+            {{ with $coverPath }}<img src="{{ . | relURL }}" alt="{{ $.Title }}" class="card-cover">{{ end }}
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-status completed">Completed</span>
+              <span class="card-chapters">{{ len .Pages }} Chapters</span>
+            </div>
+            <h3 class="card-title">{{ .Title }}</h3>
+            {{ with .Params.description }}<p class="card-desc">{{ . }}</p>{{ end }}
+            <span class="card-link">Read {{ .Title }} &rarr;</span>
+          </div>
+        </div>
+      </article>
+      {{ end }}
+    {{ end }}
   </div>
-</div>
+</section>
+
+<section class="about-section">
+  <div class="about-content">
+    <h2>About the Author</h2>
+    <p>
+      Ashim Ahmad writes Urdu fiction that bridges tradition and modernity&mdash;stories rooted in Islamic spirituality yet engaged with contemporary science, law, and social justice. Each novel is crafted with attention to emotional depth, philosophical inquiry, and the beauty of the Urdu language.
+    </p>
+  </div>
+</section>
 {{ end }}

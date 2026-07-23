@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="ref-reader-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <a href="/references/">Reference Library</a>
+    <span class="sep">/</span>
+    <span>{{ .Title }}</span>
+  </nav>
+  
+  <div class="ref-reader-header">
+    <div class="ref-reader-cover">
+      {{ with .Params.cover }}
+      <img src="{{ . | relURL }}" alt="{{ $.Title }}">
+      {{ end }}
+    </div>
+    <div class="ref-reader-info">
+      <span class="ref-author">{{ .Params.author }}</span>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Content }}</p>
+      {{ with .Params.pdf }}
+      <a href="{{ . | relURL }}" class="btn btn-primary" target="_blank" rel="noopener">Read PDF &rarr;</a>
+      {{ else }}
+      <p class="no-pdf">PDF not available for online reading. Check back later.</p>
+      {{ end }}
+    </div>
+  </div>
+  
+  {{ with .Params.pdf }}
+  <div class="pdf-viewer">
+    <iframe src="{{ . | relURL }}" class="pdf-iframe" title="{{ $.Title }} PDF"></iframe>
+  </div>
+  {{ end }}
+</section>
+{{ end }}

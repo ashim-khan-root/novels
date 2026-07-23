@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300">
+  <rect width="200" height="300" fill="#0a1a0a"/>
+  <text x="100" y="150" font-family="'Noto Nastaliq Urdu',serif" font-size="20" fill="#86efac" text-anchor="middle">مُصحف</text>
+  <text x="100" y="180" font-family="Inter,sans-serif" font-size="7" fill="#22c55e" text-anchor="middle">Nimra Ahmed</text>
+</svg>

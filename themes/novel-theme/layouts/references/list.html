@@ -1,0 +1,30 @@
+{{ define "main" }}
+<section class="reference-page">
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span>Reference Library</span>
+  </nav>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="novel-desc" style="margin-bottom:40px">{{ . }}</p>{{ end }}
+  <div class="ref-grid">
+    {{ range .Pages.ByWeight }}
+    <a href="{{ .RelPermalink }}" class="ref-card">
+      <div class="ref-cover">
+        {{ with .Params.cover }}
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
+        {{ else }}
+        <div class="ref-cover-placeholder">{{ .Title }}</div>
+        {{ end }}
+      </div>
+      <div class="ref-info">
+        <span class="ref-author">{{ .Params.author }}</span>
+        <h3 class="ref-title">{{ .Title }}</h3>
+        <p class="ref-desc">{{ .Summary | plainify | truncate 120 }}</p>
+        <span class="card-link">Browse &rarr;</span>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

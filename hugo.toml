@@ -1,12 +1,12 @@
 baseURL = "https://ashim-khan-root.github.io/novel-ai/"
-locale = "ur"
-title = "اشیم احمد — اردو ناولز"
+locale = "en"
+title = "Ashim Ahmad — Urdu Novels"
 theme = "novel-theme"
-defaultContentLanguage = "ur"
+defaultContentLanguage = "en"
 paginate = 50
 
 [params]
-  description = "اردو ناولز — رقم اور چراغِ توفیق"
+  description = "Urdu novels by Ashim Ahmad — Raqm and Chirag-e-Taufeeq"
 
 [markup]
   [markup.goldmark]

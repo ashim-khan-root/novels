@@ -1,3 +1,8 @@
+/* ============================================
+   Novel Theme — Modern Urdu Reading Experience
+   ============================================ */
+
+/* --- Reset & Base --- */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -5,222 +10,939 @@
 }
 
 :root {
-  --bg: #faf8f0;
-  --text: #1a1a1a;
-  --text-light: #666;
-  --accent: #8b4513;
-  --accent-light: #a0522d;
-  --border: #e0d8c8;
-  --card-bg: #fff;
-  --header-bg: #1a1a1a;
-  --header-text: #faf8f0;
+  /* Light theme */
+  --bg: #faf8f5;
+  --bg-alt: #f0ece6;
+  --surface: #ffffff;
+  --surface-hover: #f5f2ed;
+  --text: #1a1a2e;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e0d8;
+  --accent: #8b5cf6;
+  --accent-alt: #f59e0b;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.1);
+  --radius: 16px;
+  --radius-sm: 8px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1a1a;
-    --text: #e0d8c8;
-    --text-light: #a09080;
-    --accent: #c4a86a;
-    --accent-light: #d4b87a;
-    --border: #333;
-    --card-bg: #222;
-    --header-bg: #111;
-    --header-text: #e0d8c8;
-  }
+[data-theme="dark"] {
+  --bg: #0a0a0f;
+  --bg-alt: #12121a;
+  --surface: #1a1a2e;
+  --surface-hover: #22223a;
+  --text: #e8e6e3;
+  --text-secondary: #a0a0b8;
+  --text-muted: #6b6b80;
+  --border: #2a2a3e;
+  --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-lg: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Noto Nastaliq Urdu', serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 2;
-  font-size: 1.1rem;
+  line-height: 1.7;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1rem;
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover { color: var(--accent); }
+
+/* --- Urdu Content --- */
+.chapter-content {
+  font-family: 'Noto Nastaliq Urdu', 'Inter', serif;
+  direction: rtl;
+  text-align: justify;
+  line-height: 2.2;
+  font-size: 18px;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-light); text-decoration: underline; }
-
-.site-header {
-  background: var(--header-bg);
-  color: var(--header-text);
-  padding: 1rem 0;
-  position: sticky;
+/* --- Navbar --- */
+.navbar {
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
 }
 
-.header-inner {
+[data-theme="light"] .navbar {
+  background: rgba(250, 248, 245, 0.85);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
-.site-title {
-  font-size: 1.3rem;
+.nav-logo {
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--header-text) !important;
+  color: var(--text) !important;
+  letter-spacing: -0.01em;
 }
-.site-title:hover { text-decoration: none; }
 
-.site-nav a {
-  color: var(--header-text);
-  margin-right: 1.5rem;
-  font-size: 1rem;
-  opacity: 0.85;
+.nav-links {
+  display: flex;
+  gap: 8px;
 }
-.site-nav a:hover { opacity: 1; text-decoration: none; }
 
-/* Hero */
+.nav-link {
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-link:hover {
+  color: var(--text) !important;
+  background: rgba(255,255,255,0.05);
+}
+
+/* --- Hero Section --- */
 .hero {
-  text-align: center;
-  padding: 4rem 0 2rem;
-}
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-.subtitle {
-  color: var(--text-light);
-  font-size: 1.1rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px;
 }
 
-/* Novel Grid */
-.novel-grid {
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--accent);
+  margin-bottom: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white !important;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text) !important;
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: float 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  font-size: 1.2rem;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* --- Novels Section --- */
+.novels-section {
+  padding: 100px 24px;
+  background: var(--bg-alt);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.novels-grid {
+  max-width: 1000px;
+  margin: 0 auto;
   display: grid;
-  gap: 1.5rem;
-  padding: 2rem 0;
+  gap: 32px;
 }
 
 .novel-card {
-  background: var(--card-bg);
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1.5rem;
-}
-.novel-card h2 { margin-bottom: 0.5rem; }
-.novel-card h2 a { color: var(--text); }
-.novel-card h2 a:hover { color: var(--accent); }
-.novel-desc {
-  color: var(--text-light);
-  line-height: 1.8;
-  margin-bottom: 0.5rem;
-}
-.novel-meta {
-  color: var(--text-light);
-  font-size: 0.9rem;
+  position: relative;
 }
 
-/* Novel Page */
-.novel-page {
-  padding: 2rem 0;
-}
-.novel-page h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+.novel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
 }
 
-.chapter-list {
-  margin-top: 2rem;
+.card-layout {
+  display: flex;
 }
-.chapter-list h2 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
+
+.card-cover-side {
+  width: 140px;
+  min-height: 200px;
+  flex-shrink: 0;
+  overflow: hidden;
 }
-.chapter-list ol {
-  list-style: none;
-  counter-reset: chapter;
+
+.card-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.chapter-list ol li {
-  counter-increment: chapter;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border);
+
+.card-body {
+  padding: 28px 32px;
+  flex: 1;
 }
-.chapter-list ol li:last-child { border-bottom: none; }
-.chapter-list ol li::before {
-  content: counter(chapter) ". ";
-  color: var(--accent);
+
+.card-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.card-status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-status.completed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.card-chapters {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.card-title {
+  font-size: 1.6rem;
   font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
 }
-.chapter-list ol li a {
-  color: var(--text);
-}
-.chapter-list ol li a:hover { color: var(--accent); }
 
-/* Chapter Reading */
-.chapter {
-  padding: 2rem 0;
-  max-width: 750px;
+.card-desc {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tag {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: rgba(139, 92, 246, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.card-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: gap 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.novel-card:hover .card-link {
+  gap: 8px;
+}
+
+/* --- About Section --- */
+.about-section {
+  padding: 100px 24px;
+}
+
+.about-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* --- Footer --- */
+.footer {
+  padding: 48px 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-.chapter-nav-top {
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-}
-.chapter-nav-top a {
-  color: var(--text-light);
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-.chapter-title {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+.footer-tagline {
+  margin-top: 4px;
+  font-style: italic;
 }
 
-.chapter-content p {
-  margin-bottom: 1.5rem;
-  text-align: justify;
-}
-.chapter-content hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 2rem 0;
+/* --- Novel Page (Chapter List) --- */
+.novel-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px 24px 60px;
 }
 
-.chapter-nav-bottom {
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.breadcrumb a {
+  color: var(--text-muted);
+}
+.breadcrumb a:hover {
+  color: var(--accent);
+}
+
+.breadcrumb .sep {
+  margin: 0 8px;
+}
+
+.novel-header {
+  margin-bottom: 48px;
+}
+
+.novel-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.novel-desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.novel-stats {
   display: flex;
-  justify-content: space-between;
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.prev-chapter, .next-chapter {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-.prev-chapter:hover, .next-chapter:hover {
-  background: var(--card-bg);
-  text-decoration: none;
-}
-
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 2rem 0;
-  color: var(--text-light);
+  gap: 8px;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
-/* Mobile */
-@media (max-width: 600px) {
-  body { font-size: 1rem; }
-  .hero h1 { font-size: 1.8rem; }
-  .chapter-title { font-size: 1.4rem; }
-  .header-inner { flex-direction: column; gap: 0.5rem; }
-  .site-nav { display: flex; gap: 1rem; }
-  .site-nav a { margin-right: 0; }
-  .chapter-nav-bottom { flex-direction: column; gap: 0.5rem; align-items: stretch; }
-  .prev-chapter, .next-chapter { text-align: center; }
+.chapter-grid {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.chapter-list {
+  list-style: none;
+  counter-reset: chapter;
+}
+
+.chapter-list li {
+  counter-increment: chapter;
+}
+
+.chapter-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s;
+  gap: 16px;
+}
+
+.chapter-list li:last-child .chapter-item {
+  border-bottom: none;
+}
+
+.chapter-item:hover {
+  background: var(--surface-hover);
+}
+
+.chapter-num {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.chapter-name {
+  flex: 1;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.chapter-arrow {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.chapter-item:hover .chapter-arrow {
+  transform: translateX(-4px);
+}
+
+/* --- Chapter Reading View --- */
+.chapter {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+  position: relative;
+}
+
+.reading-progress {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  height: 3px;
+  background: var(--accent);
+  width: 0%;
+  z-index: 999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.chapter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.back-link {
+  font-size: 0.9rem;
+  color: var(--text-secondary) !important;
+  font-weight: 500;
+}
+.back-link:hover {
+  color: var(--accent) !important;
+}
+
+.reading-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.control-btn {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.control-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.control-btn sup {
+  font-size: 0.65rem;
+  margin-top: 4px;
+}
+
+.chapter-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.chapter-content p {
+  margin-bottom: 1.8rem;
+}
+
+.chapter-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.chapter-content em {
+  font-style: italic;
+}
+
+.chapter-footer {
+  text-align: center;
+  margin: 48px 0;
+}
+
+.chapter-end {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.nav-link {
+  padding: 14px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text) !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  flex: 1;
+  text-align: center;
+}
+
+.nav-link:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.nav-next {
+  text-align: left;
+}
+
+.nav-prev {
+  text-align: right;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .novel-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .chapter-title {
+    font-size: 1.5rem;
+  }
+
+  .chapter {
+    padding: 70px 16px 40px;
+  }
+
+  .card-layout {
+    flex-direction: column;
+  }
+
+  .card-cover-side {
+    width: 100%;
+    height: 200px;
+  }
+
+  .card-body {
+    padding: 24px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .chapter-nav {
+    flex-direction: column;
+  }
+
+  .chapter-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .novels-section {
+    padding: 60px 16px;
+  }
+
+  .about-section {
+    padding: 60px 16px;
+  }
+
+  .chapter-content {
+    font-size: 16px;
+  }
+
+  .ref-card {
+    flex-direction: column;
+  }
+
+  .ref-cover {
+    width: 100%;
+    height: 200px;
+  }
+
+  .ref-reader-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ref-reader-cover {
+    width: 140px;
+  }
+
+  .pdf-iframe {
+    height: 50vh;
+  }
+}
+
+/* --- Reference Library --- */
+.reference-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 100px 24px 60px;
+}
+
+.reference-page > p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 48px;
+}
+
+.ref-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+}
+
+.ref-card {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.ref-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ref-cover {
+  width: 120px;
+  min-height: 180px;
+  flex-shrink: 0;
+  background: var(--bg-alt);
+}
+
+.ref-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ref-cover-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.ref-info {
+  padding: 20px 24px;
+  flex: 1;
+}
+
+.ref-author {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.ref-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ref-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+/* --- Reference Reader Page --- */
+.ref-reader-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 100px 24px 60px;
+}
+
+.ref-reader-header {
+  display: flex;
+  gap: 40px;
+  margin: 32px 0;
+  align-items: flex-start;
+}
+
+.ref-reader-cover {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.ref-reader-cover img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+}
+
+.ref-reader-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ref-reader-info .ref-author {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.ref-reader-info p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.no-pdf {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.pdf-viewer {
+  margin-top: 40px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 80vh;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .novel-page {
+    padding: 80px 16px 40px;
+  }
+
+  .chapter-item {
+    padding: 14px 16px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: center;
+  }
 }

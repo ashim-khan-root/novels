@@ -1,12 +1,29 @@
 {{ define "main" }}
 <section class="novel-page">
-  <h1>{{ .Title }}</h1>
-  {{ with .Params.description }}<p class="novel-desc">{{ . }}</p>{{ end }}
-  <div class="chapter-list">
-    <h2>ابواب</h2>
-    <ol>
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="sep">/</span>
+    <span>{{ .Title }}</span>
+  </nav>
+  <div class="novel-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="novel-desc">{{ . }}</p>{{ end }}
+    <div class="novel-stats">
+      <span>{{ len .Pages }} chapters</span>
+      <span>&middot;</span>
+      <span>Complete</span>
+    </div>
+  </div>
+  <div class="chapter-grid">
+    <ol class="chapter-list">
       {{ range .Pages.ByWeight }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      <li>
+        <a href="{{ .RelPermalink }}" class="chapter-item">
+          <span class="chapter-num">{{ .Weight }}</span>
+          <span class="chapter-name">{{ .Title }}</span>
+          <span class="chapter-arrow">&rarr;</span>
+        </a>
+      </li>
       {{ end }}
     </ol>
   </div>

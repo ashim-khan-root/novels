@@ -1,30 +1,35 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ur">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+  <title>{{ if .Title }}{{ .Title }} &mdash; {{ end }}{{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="/" class="site-title">{{ .Site.Title }}</a>
-      <nav class="site-nav">
-        <a href="/raqm/">رقم</a>
-        <a href="/chirag-e-taufeeq/">چراغِ توفیق</a>
-      </nav>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{{ "/" | relURL }}" class="nav-logo">{{ .Site.Title }}</a>
+      <div class="nav-links">
+        <a href="{{ "/raqm/" | relURL }}" class="nav-link">Raqm</a>
+        <a href="{{ "/chirag-e-taufeeq/" | relURL }}" class="nav-link">Chirag</a>
+        <a href="{{ "/ghalat-bahan/" | relURL }}" class="nav-link">Ghalat-Bahan</a>
+        <a href="{{ "/khamosh-ehad/" | relURL }}" class="nav-link">Khamosh-Ehad</a>
+        <a href="{{ "/references/" | relURL }}" class="nav-link">Library</a>
+      </div>
     </div>
-  </header>
-  <main class="container">
+  </nav>
+  <main>
     {{ block "main" . }}{{ end }}
   </main>
-  <footer class="site-footer">
-    <div class="container">
-      <p>تمام حقوق محفوظ ہیں &copy; {{ now.Year }}</p>
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; {{ now.Year }} Ashim Ahmad. All rights reserved.</p>
+      <p class="footer-tagline">Stories written with love, for the world.</p>
     </div>
   </footer>
 </body>

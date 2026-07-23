@@ -1,19 +1,81 @@
 {{ define "main" }}
 <article class="chapter">
-  <nav class="chapter-nav-top">
-    <a href="{{ .Parent.RelPermalink }}" class="back-link">← ابواب کی فہرست</a>
-  </nav>
+  <div class="reading-progress" id="readingProgress"></div>
+  <div class="chapter-header">
+    <a href="{{ .Parent.RelPermalink }}" class="back-link">&larr; Back to chapters</a>
+    <div class="reading-controls">
+      <button id="fontDecrease" class="control-btn" title="Decrease font size">A<sup>-</sup></button>
+      <button id="fontIncrease" class="control-btn" title="Increase font size">A<sup>+</sup></button>
+      <button id="themeToggle" class="control-btn" title="Toggle theme">
+        <span class="icon-light">&#9788;</span>
+        <span class="icon-dark" style="display:none">&#9790;</span>
+      </button>
+    </div>
+  </div>
   <h1 class="chapter-title">{{ .Title }}</h1>
-  <div class="chapter-content">
+  <div class="chapter-content" id="chapterContent">
     {{ .Content }}
   </div>
-  <nav class="chapter-nav-bottom">
+  <div class="chapter-footer">
+    <p class="chapter-end">&mdash; End of {{ .Title }} &mdash;</p>
+  </div>
+  <nav class="chapter-nav">
     {{ with .NextInSection }}
-    <a href="{{ .RelPermalink }}" class="prev-chapter">→ پچھلا باب</a>
+    <a href="{{ .RelPermalink }}" class="nav-link nav-prev">&larr; {{ .Title }}</a>
     {{ end }}
     {{ with .PrevInSection }}
-    <a href="{{ .RelPermalink }}" class="next-chapter">← اگلا باب</a>
+    <a href="{{ .RelPermalink }}" class="nav-link nav-next">{{ .Title }} &rarr;</a>
     {{ end }}
   </nav>
 </article>
+
+<script>
+(function() {
+  // Reading progress
+  const progress = document.getElementById('readingProgress');
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    progress.style.width = percent + '%';
+  });
+
+  // Font size controls
+  const content = document.getElementById('chapterContent');
+  let fontSize = parseInt(localStorage.getItem('novelFontSize')) || 18;
+  content.style.fontSize = fontSize + 'px';
+  document.getElementById('fontIncrease').addEventListener('click', function() {
+    fontSize = Math.min(fontSize + 2, 32);
+    content.style.fontSize = fontSize + 'px';
+    localStorage.setItem('novelFontSize', fontSize);
+  });
+  document.getElementById('fontDecrease').addEventListener('click', function() {
+    fontSize = Math.max(fontSize - 2, 12);
+    content.style.fontSize = fontSize + 'px';
+    localStorage.setItem('novelFontSize', fontSize);
+  });
+
+  // Theme toggle
+  const iconLight = document.querySelector('.icon-light');
+  const iconDark = document.querySelector('.icon-dark');
+  const themeToggle = document.getElementById('themeToggle');
+  function setTheme(mode) {
+    document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('novelTheme', mode);
+    if (mode === 'dark') {
+      iconLight.style.display = 'none';
+      iconDark.style.display = 'inline';
+    } else {
+      iconLight.style.display = 'inline';
+      iconDark.style.display = 'none';
+    }
+  }
+  themeToggle.addEventListener('click', function() {
+    const current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+  const saved = localStorage.getItem('novelTheme');
+  if (saved) setTheme(saved);
+})();
+</script>
 {{ end }}
