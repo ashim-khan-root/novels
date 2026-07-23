@@ -9,6 +9,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  <script defer>
+  (function() {
+    const namespace = 'ashim-novels';
+    const pageKey = location.pathname.replace(/\/+$/,'') || '/';
+
+    async function getViews(path) {
+      try {
+        const r = await fetch('https://api.countapi.xyz/get/' + namespace + path);
+        const d = await r.json();
+        return d.value || 0;
+      } catch { return 0; }
+    }
+
+    async function hitViews() {
+      try {
+        const r = await fetch('https://api.countapi.xyz/hit/' + namespace + pageKey);
+        const d = await r.json();
+        updateDisplay(pageKey, d.value);
+      } catch {}
+    }
+
+    function updateDisplay(path, count) {
+      document.querySelectorAll('[data-views-for]').forEach(el => {
+        if (el.getAttribute('data-views-for') === path) {
+          el.textContent = count;
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('[data-views-for]').forEach(el => {
+        const p = el.getAttribute('data-views-for');
+        getViews(p).then(v => updateDisplay(p, v));
+      });
+      hitViews();
+    });
+  })();
+  </script>
 </head>
 <body>
   <header class="header">

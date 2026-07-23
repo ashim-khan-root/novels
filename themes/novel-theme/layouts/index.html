@@ -23,7 +23,7 @@
             {{ with .Params.description }}<p class="browse-card-desc">{{ . | truncate 120 }}</p>{{ end }}
             <div class="browse-card-footer">
               <span class="browse-card-chapters">{{ len .Pages }} chapters</span>
-              <span class="browse-card-rating">&starf; &starf; &starf; &starf; &starf;</span>
+              <span class="browse-card-views">&#128065; <span data-views-for="{{ .RelPermalink }}">—</span></span>
             </div>
           </div>
         </a>

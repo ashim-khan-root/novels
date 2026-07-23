@@ -250,10 +250,21 @@ a:hover { color: var(--accent); }
   color: var(--text-muted);
 }
 
-.browse-card-rating {
-  font-size: 0.8rem;
-  color: #f59e0b;
-  letter-spacing: 2px;
+.browse-card-views {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.views-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.chapter-views {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 8px;
 }
 
 .browse-empty {
