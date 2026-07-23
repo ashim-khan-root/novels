@@ -11,39 +11,37 @@
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   <script defer>
   (function() {
-    const namespace = 'ashim-novels';
-    const pageKey = location.pathname.replace(/\/+$/,'') || '/';
+    var ns = 'ashim-novels';
 
-    async function getViews(path) {
-      try {
-        const r = await fetch('https://api.countapi.xyz/get/' + namespace + path);
-        const d = await r.json();
-        return d.value || 0;
-      } catch { return 0; }
+    function key(p) {
+      return btoa(p).replace(/=/g,'');
     }
 
-    async function hitViews() {
-      try {
-        const r = await fetch('https://api.countapi.xyz/hit/' + namespace + pageKey);
-        const d = await r.json();
-        updateDisplay(pageKey, d.value);
-      } catch {}
-    }
-
-    function updateDisplay(path, count) {
-      document.querySelectorAll('[data-views-for]').forEach(el => {
-        if (el.getAttribute('data-views-for') === path) {
-          el.textContent = count;
-        }
-      });
+    function update(el, v) {
+      var els = document.querySelectorAll('[data-views-for="' + el + '"]');
+      for (var i = 0; i < els.length; i++) els[i].textContent = v;
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('[data-views-for]').forEach(el => {
-        const p = el.getAttribute('data-views-for');
-        getViews(p).then(v => updateDisplay(p, v));
-      });
-      hitViews();
+      var els = document.querySelectorAll('[data-views-for]');
+      var page = location.pathname.replace(/\/+$/,'') || '/';
+      var pageKey = key(page);
+
+      for (var i = 0; i < els.length; i++) {
+        (function(el) {
+          var p = el.getAttribute('data-views-for');
+          var k = key(p);
+          fetch('https://api.countapi.xyz/get/' + ns + '/' + k)
+            .then(function(r) { return r.json(); })
+            .then(function(d) { if (d && d.value !== undefined) update(p, d.value); })
+            ['catch'](function(){});
+        })(els[i]);
+      }
+
+      fetch('https://api.countapi.xyz/hit/' + ns + '/' + pageKey)
+        .then(function(r) { return r.json(); })
+        .then(function(d) { if (d && d.value !== undefined) update(page, d.value); })
+        ['catch'](function(){});
     });
   })();
   </script>
