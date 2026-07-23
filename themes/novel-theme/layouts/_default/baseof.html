@@ -9,16 +9,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
   <script defer>
   (function() {
-    var ns = 'novels-ashim';
+    firebase.initializeApp({
+      apiKey: "AIzaSyCGkJIeID4VT0RZadd1iUOnn9vOfInM8No",
+      authDomain: "novels-views.firebaseapp.com",
+      databaseURL: "https://novels-views-default-rtdb.firebaseio.com",
+      projectId: "novels-views",
+      storageBucket: "novels-views.firebasestorage.app",
+      messagingSenderId: "821346640522",
+      appId: "1:821346640522:web:f6b5d0efa8ff68f3c80373",
+      measurementId: "G-YE8CXZB9KR"
+    });
+    var db = firebase.database();
+    var countsRef = db.ref('counts');
 
     function key(p) {
-      var k = p.replace(/\/+$/,'') || '/';
-      return btoa(k).replace(/=/g,'');
+      return btoa(p.replace(/\/+$/,'') || '/').replace(/=/g,'');
     }
 
-    function update(path, val) {
+    function updateDisplay(path, val) {
       var els = document.querySelectorAll('[data-views-for="' + path + '"]');
       for (var i = 0; i < els.length; i++) els[i].textContent = val;
     }
@@ -27,23 +39,23 @@
       var page = location.pathname.replace(/\/+$/,'') || '/';
       var pageKey = key(page);
 
-      var all = document.querySelectorAll('[data-views-for]');
-
-      for (var i = 0; i < all.length; i++) {
+      var els = document.querySelectorAll('[data-views-for]');
+      for (var i = 0; i < els.length; i++) {
         (function(el) {
           var p = el.getAttribute('data-views-for');
           var k = key(p);
-          fetch('https://api.countapi.xyz/get/' + ns + '/' + k)
-            .then(function(r) { return r.json(); })
-            .then(function(d) { if (d && d.value !== undefined) update(p, d.value); })
-            .catch(function(){});
-        })(all[i]);
+          countsRef.child(k).once('value').then(function(snap) {
+            var v = snap.val();
+            if (v !== null) updateDisplay(p, v);
+          });
+        })(els[i]);
       }
 
-      fetch('https://api.countapi.xyz/hit/' + ns + '/' + pageKey)
-        .then(function(r) { return r.json(); })
-        .then(function(d) { if (d && d.value !== undefined) update(page, d.value); })
-        .catch(function(){});
+      countsRef.child(pageKey).transaction(function(current) {
+        return (current || 0) + 1;
+      }, function(error, committed, snap) {
+        if (committed && snap) updateDisplay(page, snap.val());
+      });
     });
   })();
   </script>
