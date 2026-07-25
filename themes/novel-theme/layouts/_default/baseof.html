@@ -7,7 +7,7 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
   {{ $section := or .Section (index (split (strings.TrimPrefix "/" .RelPermalink) "/") 0) }}
-  {{ $coverImage := printf "/images/covers/%s.png" $section }}
+  {{ $coverImage := printf "images/covers/%s.png" $section }}
   {{ $pageURL := .Permalink }}
   <meta property="og:title" content="{{ if .Title }}{{ .Title }} &mdash; {{ end }}{{ .Site.Title }}">
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
