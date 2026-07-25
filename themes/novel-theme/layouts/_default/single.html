@@ -100,9 +100,9 @@
     }
 
     // Otherwise compute roman URL
-    // Insert /roman/ after the first two path segments (section + chapter)
+    // Insert /roman/ after /novels/{section}/
     if (parts.length >= 2) {
-      parts.splice(1, 0, 'roman');
+      parts.splice(2, 0, 'roman');
       return '/' + parts.join('/') + '/';
     }
     return null;
