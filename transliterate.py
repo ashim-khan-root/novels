@@ -6,6 +6,9 @@ import os
 # ─── Expanded word dictionary (2500+ common Urdu words/forms) ───
 # Key insight: Urdu omits short vowels. The dictionary gives the correct form.
 WORD_MAP = {
+    # Character & proper names
+    "عاصم": "Aasim",
+
     # Core pronouns & particles
     "میں": "main", "تم": "tum", "تو": "tu", "آپ": "aap",
     "ہم": "hum", "وہ": "woh", "یہ": "yeh", "اس": "is",
