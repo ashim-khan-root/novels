@@ -7,7 +7,7 @@
   <div class="browse-grid" id="novelGrid">
     {{ range where .Site.Pages "Kind" "section" }}
       {{ if and (ne .Title "References") (ne .Title "Reference Library") (ne .Title "Posts") (ne .Title "Tags") (ne .Title "Categories") (gt (len .Pages) 0) }}
-      {{ $covers := dict "Raqm" "raqm.png" "Chirag-e-Taufeeq" "chirag-e-taufeeq.png" "Ghalat-Bahan" "ghalat-bahan.png" "Khamosh-Ehad" "khamosh-ehad.png" "Digital Love" "digital-love.png" }}
+      {{ $covers := dict "Raqm" "raqm.png" "Chirag-e-Taufeeq" "chirag-e-taufeeq.png" "Ghalat-Bahan" "ghalat-bahan.png" "Khamosh-Ehad" "khamosh-ehad.png" "Digital Love" "digital-love.png" "Project Zindagi" "project-zindagi.png" }}
       {{ $coverFile := index $covers .Title }}
       {{ $coverPath := "" }}
       {{ $novelTitle := .Title }}
