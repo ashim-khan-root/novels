@@ -517,6 +517,28 @@ a:hover { color: var(--accent); }
   font-style: italic;
 }
 
+.roman-content {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  direction: ltr;
+  text-align: justify;
+  line-height: 1.9;
+  font-size: 18px;
+}
+
+.roman-toggle {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  width: auto;
+  padding: 0 8px;
+}
+
+.roman-toggle.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
 .chapter-footer {
   text-align: center;
   margin: 48px 0;

@@ -6,7 +6,7 @@
     <div class="reading-controls">
       <button id="fontDecrease" class="control-btn" title="Decrease font size">A<sup>-</sup></button>
       <button id="fontIncrease" class="control-btn" title="Increase font size">A<sup>+</sup></button>
-      <button id="romanToggle" class="control-btn roman-toggle" title="Roman Urdu">اب↔RM</button>
+      <button id="romanToggle" class="control-btn roman-toggle active" title="Urdu script">RM↔اب</button>
       <button id="themeToggle" class="control-btn" title="Toggle theme">
         <span class="icon-light">&#9788;</span>
         <span class="icon-dark" style="display:none">&#9790;</span>
@@ -14,10 +14,9 @@
     </div>
   </div>
   <h1 class="chapter-title">{{ .Title }}</h1>
-  <div class="chapter-content" id="chapterContent">
+  <div class="chapter-content roman-content" id="chapterContent">
     {{ .Content }}
   </div>
-  <div class="chapter-content roman-content" id="romanContent" style="display:none"></div>
   <div class="chapter-footer">
     <p class="chapter-end">&mdash; End of {{ .Title }} &mdash;</p>
   </div>
@@ -33,7 +32,6 @@
 
 <script>
 (function() {
-  // Reading progress
   const progress = document.getElementById('readingProgress');
   window.addEventListener('scroll', function() {
     const scrollTop = window.scrollY;
@@ -42,25 +40,20 @@
     progress.style.width = percent + '%';
   });
 
-  // Font size controls
   const content = document.getElementById('chapterContent');
-  const romanContent = document.getElementById('romanContent');
   let fontSize = parseInt(localStorage.getItem('novelFontSize')) || 18;
   content.style.fontSize = fontSize + 'px';
   document.getElementById('fontIncrease').addEventListener('click', function() {
     fontSize = Math.min(fontSize + 2, 32);
     content.style.fontSize = fontSize + 'px';
-    if (romanContent.style.display !== 'none') romanContent.style.fontSize = fontSize + 'px';
     localStorage.setItem('novelFontSize', fontSize);
   });
   document.getElementById('fontDecrease').addEventListener('click', function() {
     fontSize = Math.max(fontSize - 2, 12);
     content.style.fontSize = fontSize + 'px';
-    if (romanContent.style.display !== 'none') romanContent.style.fontSize = fontSize + 'px';
     localStorage.setItem('novelFontSize', fontSize);
   });
 
-  // Theme toggle
   const iconLight = document.querySelector('.icon-light');
   const iconDark = document.querySelector('.icon-dark');
   const themeToggle = document.getElementById('themeToggle');
@@ -82,86 +75,18 @@
   const saved = localStorage.getItem('novelTheme');
   if (saved) setTheme(saved);
 
-  // Roman Urdu toggle
+  // Toggle to Urdu
   const romanBtn = document.getElementById('romanToggle');
-  const romanUrl = window.location.pathname.replace(/\/$/, '') + '?roman=1';
-  const originalHtml = content.innerHTML;
-  let romanLoaded = false;
-
-  function computeRomanUrl() {
+  romanBtn.addEventListener('click', function() {
+    // Navigate to the Urdu version
     const path = window.location.pathname.replace(/\/$/, '');
     const parts = path.split('/').filter(Boolean);
-
-    // If already on a roman page, compute Urdu URL
-    if (parts.includes('roman')) {
-      const idx = parts.indexOf('roman');
+    const idx = parts.indexOf('roman');
+    if (idx !== -1) {
       parts.splice(idx, 1);
-      return '/' + parts.join('/') + '/';
-    }
-
-    // Otherwise compute roman URL
-    // Insert /roman/ after the first two path segments (section + chapter)
-    if (parts.length >= 2) {
-      parts.splice(1, 0, 'roman');
-      return '/' + parts.join('/') + '/';
-    }
-    return null;
-  }
-
-  function loadRoman() {
-    if (romanLoaded) return;
-    const fetchUrl = computeRomanUrl();
-    if (!fetchUrl) return;
-    romanBtn.textContent = '…';
-    fetch(fetchUrl)
-      .then(r => r.text())
-      .then(html => {
-        // Extract just the content from the fetched roman page
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const romanDiv = doc.querySelector('.chapter-content') || doc.body;
-        const romanHtml = romanDiv.innerHTML;
-        romanContent.innerHTML = romanHtml;
-        romanContent.style.fontSize = fontSize + 'px';
-        romanLoaded = true;
-        showRoman(true);
-      })
-      .catch(() => {
-        romanBtn.textContent = 'اب↔RM';
-        alert('Roman Urdu version not available yet for this chapter.');
-      });
-  }
-
-  let romanActive = false;
-  function showRoman(show) {
-    romanActive = show;
-    if (show) {
-      content.style.display = 'none';
-      romanContent.style.display = 'block';
-      romanBtn.textContent = 'RM↔اب';
-      romanBtn.classList.add('active');
-    } else {
-      content.style.display = 'block';
-      romanContent.style.display = 'none';
-      romanBtn.textContent = 'اب↔RM';
-      romanBtn.classList.remove('active');
-    }
-    localStorage.setItem('romanMode', show ? 'on' : 'off');
-  }
-
-  romanBtn.addEventListener('click', function() {
-    if (romanActive) {
-      showRoman(false);
-    } else {
-      loadRoman();
+      window.location.href = '/' + parts.join('/') + '/';
     }
   });
-
-  // Restore previous roman preference
-  const romanPref = localStorage.getItem('romanMode');
-  if (romanPref === 'on') {
-    loadRoman();
-  }
 })();
 </script>
 {{ end }}
